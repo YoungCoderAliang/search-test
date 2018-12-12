@@ -13,7 +13,7 @@ import org.elasticsearch.client.RestHighLevelClient;
 public class ClientFactory {
 	public static RestHighLevelClient getNewClient() {
 		CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
-		credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "Yy234372"));
+		credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "----"));
 
 		RestClientBuilder builder = RestClient.builder(new HttpHost("es-cn-4590wsh2x000zu4kh.public.elasticsearch.aliyuncs.com", 9200, "http"));
 		builder.setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
