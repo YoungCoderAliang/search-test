@@ -15,7 +15,7 @@ public class ClientFactory {
 		CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
 		credentialsProvider.setCredentials(AuthScope.ANY, new UsernamePasswordCredentials("elastic", "----"));
 
-		RestClientBuilder builder = RestClient.builder(new HttpHost("es-cn-4590wsh2x000zu4kh.public.elasticsearch.aliyuncs.com", 9200, "http"));
+		RestClientBuilder builder = RestClient.builder(new HttpHost("47.75.44.24", 9200, "http"));
 		builder.setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
             @Override
             public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpClientBuilder) {
