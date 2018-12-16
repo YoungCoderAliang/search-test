@@ -42,8 +42,8 @@ public abstract class AbstractSearchTest {
 
 	private void doSearch(RestHighLevelClient client)
 			throws InterruptedException, Exception, IOException {
-		// 添加数据似乎不是能够立刻读出来的，延迟一秒以后，才正常可读
-		// 应与索引配置 index.refresh_interval 有关，该配置 权衡建索引的性能和检索的时效性
+		// MARK 添加数据似乎不是能够立刻读出来的，延迟一秒以后，才正常可读
+		// MARK 应与索引配置 index.refresh_interval 有关，该配置 权衡建索引的性能和检索的时效性
 		Thread.sleep(1000);
 		SearchRequest searchRequest = new SearchRequest(getIndexName());
 		searchRequest.source(searchSourceBuilder(client));

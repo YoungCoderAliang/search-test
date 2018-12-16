@@ -21,8 +21,8 @@ public class ExactSearch extends AbstractSearchTest{
 		XContentBuilder mapping = XContentFactory.jsonBuilder()
 				.startObject()
 					.startObject("properties")
-					// ElasticSearch 2.x 文档关于 index 字段已经过时，index在5.x以后，只有 yes 和 no 两个值
-					// 如果不希望被分词，那么需要设置 type 为 keyword ，而不是 type=text,index=not_analyzed 组合
+					// MARK ElasticSearch 2.x 文档关于 index 字段已经过时，index在5.x以后，只有 yes 和 no 两个值
+					// MARK 如果不希望被分词，那么需要设置 type 为 keyword ，而不是 type=text,index=not_analyzed 组合
 						.startObject("aid").field("type","keyword").endObject()
 						.startObject("title").field("type", "text").field("analyzer", "ik_max_word").endObject()
 						.startObject("content").field("type", "text").field("analyzer", "ik_max_word").endObject()
