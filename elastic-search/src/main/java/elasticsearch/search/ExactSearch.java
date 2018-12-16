@@ -37,17 +37,6 @@ public class ExactSearch extends AbstractSearchTest{
 
 	@Override
 	public void addData(RestHighLevelClient client) throws Exception {
-		IndexRequest req = new IndexRequest(getIndexName(), getTypeName(), UUID.get());
-		XContentBuilder item = XContentFactory.jsonBuilder()
-				.startObject()
-					.field("aid", "123-321")
-					.field("title", "太阳奇才完成3人交易 湖人心爱之人被首都截胡")
-					.field("content", "昨天，太阳、奇才和灰熊几乎达成了一桩三方交易，但是由于沟通失误（太阳希望得到灰熊的迪龙-布鲁克斯，但灰熊只愿意送出马肖恩-布鲁克斯），这笔交易瞬间告吹。")
-					.field("sport_type", "basket ball")
-				.endObject();
-		req.source(item);
-		IndexResponse res = client.index(req);
-		System.out.println(res.getResult());
 	}
 
 	@Override
