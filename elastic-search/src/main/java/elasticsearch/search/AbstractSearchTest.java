@@ -39,6 +39,7 @@ public abstract class AbstractSearchTest {
 			addData(client);
 			// MARK 添加数据似乎不是能够立刻读出来的，延迟一秒以后，才正常可读
 			// MARK 应与索引配置 index.refresh_interval 有关，该配置 权衡建索引的性能和检索的时效性
+			// MARK 下面的代码可以进行手工刷新
 			client.indices().refresh(new RefreshRequest(getIndexName()));
 			doSearch(client);
 		} catch(Exception e) {
