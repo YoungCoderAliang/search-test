@@ -13,16 +13,6 @@ public class TermQuerySearch extends AbstractSearchTest{
 	}
 
 	@Override
-	public void createIndex(RestHighLevelClient client) throws Exception {
-		baseIndex(client);
-	}
-
-	@Override
-	public void addData(RestHighLevelClient client) throws Exception {
-		baseData(client);
-	}
-
-	@Override
 	public SearchSourceBuilder searchSourceBuilder(RestHighLevelClient client) throws Exception {
 		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		// termQuery 似乎是将value值当作一个 term 去查询，而不是先用分析器进行分词

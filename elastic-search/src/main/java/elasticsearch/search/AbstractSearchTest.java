@@ -80,9 +80,13 @@ public abstract class AbstractSearchTest {
 		}
 	}
 
-	public abstract void createIndex(RestHighLevelClient client) throws Exception;
+	public void createIndex(RestHighLevelClient client) throws Exception {
+		baseIndex(client);
+	}
 	
-	public abstract void addData(RestHighLevelClient client) throws Exception;
+	public void addData(RestHighLevelClient client) throws Exception {
+		baseData(client);
+	}
 	
 	public abstract SearchSourceBuilder searchSourceBuilder(RestHighLevelClient client) throws Exception;
 
