@@ -1,8 +1,10 @@
-package elasticsearch.search;
+package elasticsearch.search.analyzed;
 
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+
+import elasticsearch.search.AbstractSearch;
 
 public class MatchSearch extends AbstractSearch {
 	public static void main(String[] args) {
@@ -21,9 +23,8 @@ public class MatchSearch extends AbstractSearch {
 	}
 
 	@Override
-	public SearchSourceBuilder searchSourceBuilder(RestHighLevelClient client)
+	public void buildSearch(SearchSourceBuilder searchSourceBuilder)
 			throws Exception {
-		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		// 单字段匹配，match匹配会先进行分词
 //		searchSourceBuilder.query(QueryBuilders.matchQuery("content", "时间简史"));
 		// 多字段匹配
@@ -35,7 +36,5 @@ public class MatchSearch extends AbstractSearch {
 		// 可以设置 cutoff frequency 来区分停词，出现频率超过该数值，则认为是停词
 //		searchSourceBuilder.query(QueryBuilders.matchQuery("content", "决赛的连胜"));
 		searchSourceBuilder.query(QueryBuilders.commonTermsQuery("content", "决赛的连胜").cutoffFrequency(0.1f));
-		
-		return searchSourceBuilder;
 	}
 }

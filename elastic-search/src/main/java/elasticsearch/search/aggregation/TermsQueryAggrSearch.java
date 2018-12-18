@@ -1,7 +1,6 @@
 package elasticsearch.search.aggregation;
 
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.metrics.sum.ParsedSum;
@@ -22,13 +21,11 @@ public class TermsQueryAggrSearch extends AbstractAggregationSearch {
 	}
 
 	@Override
-	public SearchSourceBuilder searchSourceBuilder(RestHighLevelClient client) throws Exception {
-		SearchSourceBuilder builder = new SearchSourceBuilder();
+	public void buildSearch(SearchSourceBuilder builder) throws Exception {
 		// select sum(score) as scoreSum from {index} where sport_type = 'basket ball'
 		builder.aggregation(AggregationBuilders.sum("scoreSum").field("score"));
 		builder.query(QueryBuilders.termQuery("sport_type", "basket ball"));
 		builder.size(0);
-		return builder;
 	}
 
 }

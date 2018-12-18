@@ -1,7 +1,6 @@
 package elasticsearch.search.aggregation;
 
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
@@ -24,11 +23,9 @@ public class TermsAggregationSearch extends AbstractAggregationSearch {
 	}
 
 	@Override
-	public SearchSourceBuilder searchSourceBuilder(RestHighLevelClient client) throws Exception {
-		SearchSourceBuilder builder = new SearchSourceBuilder();
+	public void buildSearch(SearchSourceBuilder builder) throws Exception {
 		// select sportType,count(*) from {index} group by sportType
 		TermsAggregationBuilder tab = AggregationBuilders.terms("sportType").field("sport_type");
 		builder.aggregation(tab);
-		return builder;
 	}
 }

@@ -57,7 +57,8 @@ public abstract class AbstractSearch {
 			throws InterruptedException, Exception, IOException {
 //		Thread.sleep(3000);
 		SearchRequest searchRequest = new SearchRequest(getIndexName());
-		SearchSourceBuilder builder = searchSourceBuilder(client);
+		SearchSourceBuilder builder = new SearchSourceBuilder();
+		buildSearch(builder);
 		HighlightBuilder highlightBuilder = new HighlightBuilder().field("*");
 		highlightBuilder.preTags(" ${");
 		highlightBuilder.postTags("} ");
@@ -88,7 +89,7 @@ public abstract class AbstractSearch {
 		baseData(client);
 	}
 	
-	public abstract SearchSourceBuilder searchSourceBuilder(RestHighLevelClient client) throws Exception;
+	public abstract void buildSearch(SearchSourceBuilder builder) throws Exception;
 
 	public void dropIndex(RestHighLevelClient client) throws Exception {
 		DeleteIndexRequest req = new DeleteIndexRequest(getIndexName());

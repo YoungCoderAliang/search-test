@@ -15,7 +15,8 @@ public abstract class AbstractAggregationSearch extends AbstractSearch {
 	public void doSearch(RestHighLevelClient client)
 			throws InterruptedException, Exception, IOException {
 		SearchRequest searchRequest = new SearchRequest(getIndexName());
-		SearchSourceBuilder builder = searchSourceBuilder(client);
+		SearchSourceBuilder builder = new SearchSourceBuilder();
+		buildSearch(builder);
 		searchRequest.source(builder);
 		searchRequest.types(getTypeName());
 		SearchResponse res = client.search(searchRequest);

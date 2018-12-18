@@ -1,6 +1,5 @@
 package elasticsearch.search.termlevel;
 
-import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
@@ -13,13 +12,11 @@ public class TermQuerySearch extends AbstractSearch{
 	}
 
 	@Override
-	public SearchSourceBuilder searchSourceBuilder(RestHighLevelClient client) throws Exception {
-		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
+	public void buildSearch(SearchSourceBuilder searchSourceBuilder) throws Exception {
 		// termQuery 似乎是将value值当作一个 term 去查询，而不是先用分析器进行分词
 //		searchSourceBuilder.query(QueryBuilders.termQuery("title", "太阳"));
 //		searchSourceBuilder.query(QueryBuilders.termQuery("title", "太阳完成"));
 		searchSourceBuilder.query(QueryBuilders.termQuery("aid", "123-321"));
 //		searchSourceBuilder.query(QueryBuilders.termQuery("aid", "123"));
-		return searchSourceBuilder;
 	}
 }

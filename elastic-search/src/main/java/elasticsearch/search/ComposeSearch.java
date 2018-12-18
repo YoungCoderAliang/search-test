@@ -21,14 +21,11 @@ public class ComposeSearch extends AbstractSearch {
 	}
 
 	@Override
-	public SearchSourceBuilder searchSourceBuilder(RestHighLevelClient client)
+	public void buildSearch(SearchSourceBuilder searchSourceBuilder)
 			throws Exception {
-		SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
 		searchSourceBuilder.query(QueryBuilders.boolQuery()
 				.must(QueryBuilders.termQuery("title", "太阳"))
 //				.must(QueryBuilders.termQuery("content", "交易")));
 				.must(QueryBuilders.termQuery("content", "明星")));
-		return searchSourceBuilder;
 	}
-
 }
