@@ -21,7 +21,7 @@ import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 
 import elasticsearch.ClientFactory;
 
-public abstract class AbstractSearchTest {
+public abstract class AbstractSearch {
 	public void test() {
 		RestHighLevelClient client = ClientFactory.getNewClient();
 		try {
@@ -53,7 +53,7 @@ public abstract class AbstractSearchTest {
 		closeClient(client);
 	}
 
-	private void doSearch(RestHighLevelClient client)
+	protected void doSearch(RestHighLevelClient client)
 			throws InterruptedException, Exception, IOException {
 //		Thread.sleep(3000);
 		SearchRequest searchRequest = new SearchRequest(getIndexName());
@@ -112,7 +112,8 @@ public abstract class AbstractSearchTest {
 						.startObject("aid").field("type","keyword").endObject()
 						.startObject("title").field("type", "text").field("analyzer", "ik_max_word").endObject()
 						.startObject("content").field("type", "text").field("analyzer", "ik_max_word").endObject()
-						.startObject("sport_type").field("type", "text").field("analyzer", "ik_max_word").endObject()
+						.startObject("sport_type").field("type", "keyword").endObject()
+						.startObject("score").field("type", "long").endObject()
 					.endObject()
 				.endObject();
 		CreateIndexRequest request = new CreateIndexRequest(getIndexName());
@@ -130,6 +131,7 @@ public abstract class AbstractSearchTest {
 					.field("title", "太阳奇才完成3人交易 湖人心爱之人被首都截胡")
 					.field("content", "昨天，太阳、奇才和灰熊几乎达成了一桩三方交易，但是由于沟通失误（太阳希望得到灰熊的迪龙-布鲁克斯，但灰熊只愿意送出马肖恩-布鲁克斯），这笔交易瞬间告吹。")
 					.field("sport_type", "basket ball")
+					.field("score", 3)
 				.endObject();
 		req.source(item);
 		bulk.add(req);
@@ -152,6 +154,7 @@ public abstract class AbstractSearchTest {
 					.field("title", "哈登32分三双保罗两双 火箭力取灰熊收三连胜")
 					.field("content", "灰熊在最后一节顽强反击。比赛还有3分04秒时，康利两罚两中，灰熊只以91-97落后。哈登强突造成犯规，两罚一中。两队此后相继失误，而在本节还有1分16秒时，哈登在三分线外造成犯规，对他下手的仍是杰克逊。这已经是本场比赛他第三次在三分线外被哈登造犯规。")
 					.field("sport_type", "basket ball")
+					.field("score", 2)
 				.endObject();
 		req.source(item);
 		bulk.add(req);
@@ -163,6 +166,7 @@ public abstract class AbstractSearchTest {
 					.field("title", "詹姆斯球哥同时砍三双 湖人三节一波血虐黄蜂")
 					.field("content", "黄蜂的崩盘有些意外，湖人的“一波流”让胜负失去了悬念。本节还有3分18秒时，詹姆斯抢下篮板，然后送出助攻，斯蒂芬森投中三分。这一板和一助攻，让詹姆斯达到了三双。")
 					.field("sport_type", "basket ball")
+					.field("score", 11)
 				.endObject();
 		req.source(item);
 		bulk.add(req);
@@ -174,6 +178,7 @@ public abstract class AbstractSearchTest {
 					.field("title", "总决赛先丢一局后连扳四局 陈梦力挫何卓佳夺冠")
 					.field("content", "北京时间12月16日消息，2018年国际乒联世界巡回赛总决赛在韩国仁川又产生一项冠军，陈梦夺得女单冠军。在决赛里先丢一局的情况下陈梦强势反弹，她连扳四局以4比1击败队友何卓佳夺冠。")
 					.field("sport_type", "table tenis")
+					.field("score", 55)
 				.endObject();
 		req.source(item);
 		bulk.add(req);

@@ -4,9 +4,9 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
-public class ComposeSearch extends AbstractSearchTest {
+public class ComposeSearch extends AbstractSearch {
 	public static void main(String[] args) {
-		AbstractSearchTest test = new ComposeSearch();
+		AbstractSearch test = new ComposeSearch();
 		test.test();
 	}
 

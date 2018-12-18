@@ -4,9 +4,9 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
-public class MatchSearch extends AbstractSearchTest {
+public class MatchSearch extends AbstractSearch {
 	public static void main(String[] args) {
-		AbstractSearchTest test = new MatchSearch();
+		AbstractSearch test = new MatchSearch();
 		test.test();
 	}
 

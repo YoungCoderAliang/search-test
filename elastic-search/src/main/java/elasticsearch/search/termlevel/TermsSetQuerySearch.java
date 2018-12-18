@@ -3,11 +3,11 @@ package elasticsearch.search.termlevel;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
-import elasticsearch.search.AbstractSearchTest;
+import elasticsearch.search.AbstractSearch;
 
-public class TermsSetQuerySearch extends AbstractSearchTest {
+public class TermsSetQuerySearch extends AbstractSearch {
 	public static void main(String[] args) {
-		AbstractSearchTest test = new TermsSetQuerySearch();
+		AbstractSearch test = new TermsSetQuerySearch();
 		test.test();
 	}
 

@@ -4,11 +4,11 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
-import elasticsearch.search.AbstractSearchTest;
+import elasticsearch.search.AbstractSearch;
 
-public class TermsQuerySearch extends AbstractSearchTest {
+public class TermsQuerySearch extends AbstractSearch {
 	public static void main(String[] args) {
-		AbstractSearchTest test = new TermsQuerySearch();
+		AbstractSearch test = new TermsQuerySearch();
 		test.test();
 	}
 
