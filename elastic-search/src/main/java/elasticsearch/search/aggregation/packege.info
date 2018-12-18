@@ -1,0 +1,4 @@
+验证聚合查询，主要参考：
+https://www.elastic.co/guide/cn/elasticsearch/guide/current/aggregations.html
+https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.3/_structuring_aggregations.html
+https://blog.csdn.net/LCYong_/article/details/79896954
