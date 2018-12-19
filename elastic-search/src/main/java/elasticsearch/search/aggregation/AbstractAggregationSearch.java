@@ -30,4 +30,8 @@ public abstract class AbstractAggregationSearch extends AbstractSearch {
 	}
 
 	protected abstract void showRes(SearchResponse res);
+	
+	protected void line() {
+		System.out.println("================================================");
+	}
 }
