@@ -4,6 +4,7 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.aggregations.AggregationBuilders;
 import org.elasticsearch.search.aggregations.bucket.terms.Terms;
 import org.elasticsearch.search.aggregations.bucket.terms.TermsAggregationBuilder;
+import org.elasticsearch.search.aggregations.metrics.sum.ParsedSum;
 import org.elasticsearch.search.aggregations.metrics.sum.SumAggregationBuilder;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
@@ -19,7 +20,8 @@ public class SubAggregationSearch extends AbstractAggregationSearch {
 	protected void showRes(SearchResponse res) {
 		Terms ts = res.getAggregations().get("sportType");
 		for (Terms.Bucket entry : ts.getBuckets()) {
-            System.out.println("Key: "+entry.getKey()+"\t\tDoc:"+entry.getDocCount());
+			ParsedSum ps = entry.getAggregations().get("scoreSum");
+            System.out.println("Key: "+entry.getKey()+"\t\tscoreSum:"+ps.getValue());
         }
 	}
 
