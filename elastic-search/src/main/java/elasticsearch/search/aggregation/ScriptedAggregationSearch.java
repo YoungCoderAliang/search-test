@@ -33,11 +33,11 @@ public class ScriptedAggregationSearch extends AbstractAggregationSearch {
 		// 6.4 版本将 params._agg 修改为 state ， 将 params._aggs 修改为 states
 		// 在脚本中加入 Debug.explain(doc.goals) ，即可抛出包含参数类型信息的异常
 		ScriptedMetricAggregationBuilder scriptAggr = AggregationBuilders.scriptedMetric("sortedScore")
-				.initScript(java("params._agg.scores = []"))
-				.mapScript(java("params._agg.scores.add(doc.score.getValue())"))
-				.combineScript(java(
+				.initScript(painless("params._agg.scores = []"))
+				.mapScript(painless("params._agg.scores.add(doc.score.getValue())"))
+				.combineScript(painless(
 						"def sorted = new LinkedList(params._agg.scores); Collections.sort(sorted, Collections.reverseOrder()); if (sorted.size() > 10) {sorted = sorted.subList(0,10);} return sorted; "))
-				.reduceScript(java(
+				.reduceScript(painless(
 						"def combined = new LinkedList(); params._aggs.forEach(s -> {combined.addAll(s)}); Collections.sort(combined, Collections.reverseOrder()); if (combined.size() > 10) {combined = combined.subList(0,10);} return combined;"));
 		// 参考的都是官方文档 https://www.elastic.co/guide/en/elasticsearch/painless/6.3/painless-general-syntax.html#functions
 		// for (piece : params._aggs) {combined.addAll(piece);}    不行，不清楚原因
@@ -46,7 +46,7 @@ public class ScriptedAggregationSearch extends AbstractAggregationSearch {
 		System.out.println(builder.toString());
 	}
 
-	private Script java(String source) {
+	private Script painless(String source) {
 		return new Script(ScriptType.INLINE, "painless", source, new HashMap<String, Object>());
 	}
 }
